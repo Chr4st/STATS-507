@@ -1,21 +1,6 @@
-# GeoAg Arb Terminal
+# STATS 507 Final Project
 
-**Satellite + Weather → Crop Nowcast → Regional Arbitrage Signals → Risk-Aware Trade Ideas → Real-Time C++ Terminal**
-
-> **DISCLAIMER**: This is a research/idea-generation tool. It does **not** auto-execute trades and is **not** investment advice. Use at your own risk.
-
----
-
-## Overview
-
-GeoAg Arb Terminal is an end-to-end system that:
-
-1. **Ingests** satellite imagery, weather data, and geographic region definitions
-2. **Encodes** imagery and locations using a **SatCLIP**-style embedding model
-3. **Nowcasts** crop stress, growth stage, and yield-shock distributions via a Transformer time-series model with uncertainty quantification (MC Dropout)
-4. **Generates** regional arbitrage signals, macro indicators, and ranked trade ideas
-5. **Applies** risk controls: pin risk, cross-region option spec mismatches, market session/after-hours checks
-6. **Serves** everything via a FastAPI + WebSocket server to a **C++20 FTXUI terminal** that updates in real time
+**Satellite + Weather Data → Crop Nowcast → Regional Arbitrage Signals → Risk-Aware Trade Ideas → Real-Time C++ Terminal**
 
 ---
 
@@ -23,7 +8,7 @@ GeoAg Arb Terminal is an end-to-end system that:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        GeoAg Arb Terminal                          │
+│                        Terminal                                     │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐        │
@@ -108,8 +93,6 @@ Weather (ERA5/GFS-like) ───┘
 ## Data Sources
 
 This project integrates data from three external sources:
-
-### 1. SatCLIP — Satellite Location Embeddings
 - **Source**: [microsoft/SatCLIP-ViT16-L10](https://huggingface.co/microsoft/SatCLIP-ViT16-L10) on HuggingFace
 - **GitHub**: [microsoft/satclip](https://github.com/microsoft/satclip)
 - **Paper**: [SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery](https://arxiv.org/abs/2311.17179)
@@ -155,55 +138,6 @@ In demo mode, the system uses a **StubBackend** for embeddings and synthetic til
 
 ---
 
-## How Signals Become Arb Ideas
-
-### Cross-Region Spreads
-For a commodity (e.g., wheat), if one producing region is stressed while another is stable:
-- **Long** the beneficiary region's futures
-- **Short** the impacted region's futures
-- Score by standardized shock differential
-
-### Commodity Substitution
-If wheat stress is high, corn/soy may benefit from acreage rotation or feed substitution:
-- Rotate exposure using correlation-weighted positions
-
-### Volatility Catalysts
-High model uncertainty + upcoming WASDE/crop reports → options structures:
-- Straddles/strangles on high-sigma instruments
-
-### Directional
-Extreme stress signals → directional bias with hedges suggested
-
-### Ranking
-```
-edge = w1 * |shock_diff| + w2 * catalyst_score + w3 * liquidity - w4 * risk_penalty
-```
-
----
-
-## How Risk Checks Work
-
-### Pin Risk
-- Compares current spot price to configured OI peaks near expiry
-- If spot is within threshold % of a high-OI strike → elevated pin risk score
-
-### Market Sessions
-- Each instrument has configured trading hours, breaks, and holidays
-- `tradable_now` is computed using the instrument's exchange timezone
-- If closed, `best_window` shows the next session open
-
-### Spec Mismatch
-- When a trade has legs on different instruments, checks for:
-  - Settlement style differences (cash vs physical)
-  - Exercise style differences
-  - Currency mismatches
-  - Timezone mismatches
-
-### Liquidity
-- ETFs flagged as potentially lower liquidity for agricultural trades
-
----
-
 ## How the Terminal Works
 
 The C++ terminal:
@@ -228,79 +162,6 @@ The C++ terminal:
 
 ---
 
-## Switching from Stub to Real SatCLIP
-
-1. Download weights from HuggingFace:
-   ```bash
-   python -m geoag.ingest.download_data --satclip
-   ```
-   This downloads `microsoft/SatCLIP-ViT16-L10` to `models/satclip-vit16-l10.ckpt`.
-
-2. Edit `configs/settings.yaml`:
-   ```yaml
-   embedding:
-     backend: "satclip"
-     satclip_weights: "models/satclip-vit16-l10.ckpt"
-   ```
-3. Optionally download real crop imagery:
-   ```bash
-   python -m geoag.ingest.download_data --imagery
-   ```
-4. Restart the server. The `SatCLIPBackend` will load real weights.
-
----
-
-## Quick Start
-
-### Prerequisites
-- Python 3.11+
-- CMake 3.20+
-- C++20 compiler (gcc 12+ / clang 15+ / Apple Clang 15+)
-- pip
-
-### Setup
-```bash
-make setup          # Install Python deps + build C++ terminal
-```
-
-Or separately:
-```bash
-make setup-python   # Python only
-make setup-cpp      # C++ only
-```
-
-### Download Real Data (Optional)
-```bash
-make download-data  # SatCLIP weights + GreenHyperSpectra + live prices
-```
-
-### Run Demo
-```bash
-make demo           # Starts server + terminal
-```
-
-Or step by step:
-```bash
-# Terminal 1: Start API server
-make demo-server
-
-# Terminal 2: Start C++ terminal (after server is ready)
-make demo-terminal
-```
-
-Or use the script:
-```bash
-./scripts/run_demo.sh
-```
-
-### Run Tests
-```bash
-make test           # Runs pytest
-make lint           # Runs ruff
-make typecheck      # Runs mypy
-```
-
----
 
 ## Project Structure
 
@@ -413,11 +274,6 @@ All configuration is in `configs/`. Key files:
 | WS | `/ws` | Real-time streaming (macro, regions, trade_ideas, heartbeat) |
 
 ---
-
-## License
-
-MIT
-
 ---
 
 **DISCLAIMER**: This software is for educational and research purposes only. It does not constitute investment advice, and no trades are automatically executed. Past model outputs do not predict future market performance. Use at your own risk.
