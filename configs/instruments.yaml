@@ -1,0 +1,113 @@
+# Instrument definitions for GeoAg Arb Terminal
+# Each instrument has contract specs, session info, and region mapping
+
+instruments:
+  ZC:
+    name: "Corn Futures"
+    exchange: "CME"
+    currency: "USD"
+    tick_size: 0.25
+    tick_value: 12.50
+    contract_size: 5000        # bushels
+    settlement: "physical"
+    exercise_style: "american"
+    last_trade_day_offset: -1  # business days before 15th of delivery month
+    front_months: ["H", "K", "N", "U", "Z"]
+    timezone: "America/Chicago"
+    session:
+      electronic_open: "19:00"
+      electronic_close: "07:45"
+      pit_open: "08:30"
+      pit_close: "13:20"
+      break_start: "07:45"
+      break_end: "08:30"
+    regions: ["US_CORN_BELT"]
+    proxy_etf: "CORN"
+
+  ZW:
+    name: "Wheat Futures"
+    exchange: "CME"
+    currency: "USD"
+    tick_size: 0.25
+    tick_value: 12.50
+    contract_size: 5000
+    settlement: "physical"
+    exercise_style: "american"
+    last_trade_day_offset: -1
+    front_months: ["H", "K", "N", "U", "Z"]
+    timezone: "America/Chicago"
+    session:
+      electronic_open: "19:00"
+      electronic_close: "07:45"
+      pit_open: "08:30"
+      pit_close: "13:20"
+      break_start: "07:45"
+      break_end: "08:30"
+    regions: ["US_WHEAT_PLAINS", "EU_WHEAT_FRANCE", "INDIA_WHEAT_PUNJAB"]
+    proxy_etf: "WEAT"
+
+  ZS:
+    name: "Soybean Futures"
+    exchange: "CME"
+    currency: "USD"
+    tick_size: 0.25
+    tick_value: 12.50
+    contract_size: 5000
+    settlement: "physical"
+    exercise_style: "american"
+    last_trade_day_offset: -1
+    front_months: ["F", "H", "K", "N", "Q", "U", "X"]
+    timezone: "America/Chicago"
+    session:
+      electronic_open: "19:00"
+      electronic_close: "07:45"
+      pit_open: "08:30"
+      pit_close: "13:20"
+      break_start: "07:45"
+      break_end: "08:30"
+    regions: ["BRAZIL_SOY"]
+    proxy_etf: "SOYB"
+
+  VEGI:
+    name: "iShares MSCI Agriculture ETF"
+    exchange: "NYSE"
+    currency: "USD"
+    tick_size: 0.01
+    tick_value: 0.01
+    contract_size: 1
+    settlement: "cash"
+    exercise_style: "american"
+    last_trade_day_offset: 0
+    front_months: []
+    timezone: "America/New_York"
+    session:
+      electronic_open: "04:00"
+      electronic_close: "20:00"
+      pit_open: "09:30"
+      pit_close: "16:00"
+      break_start: null
+      break_end: null
+    regions: ["US_CORN_BELT", "US_WHEAT_PLAINS", "BRAZIL_SOY", "EU_WHEAT_FRANCE"]
+    proxy_etf: "VEGI"
+
+  EWZ:
+    name: "iShares MSCI Brazil ETF"
+    exchange: "NYSE"
+    currency: "USD"
+    tick_size: 0.01
+    tick_value: 0.01
+    contract_size: 1
+    settlement: "cash"
+    exercise_style: "american"
+    last_trade_day_offset: 0
+    front_months: []
+    timezone: "America/New_York"
+    session:
+      electronic_open: "04:00"
+      electronic_close: "20:00"
+      pit_open: "09:30"
+      pit_close: "16:00"
+      break_start: null
+      break_end: null
+    regions: ["BRAZIL_SOY"]
+    proxy_etf: "EWZ"

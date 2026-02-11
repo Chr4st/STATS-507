@@ -1,0 +1,28 @@
+# GeoAg Arb Terminal — Python API Server
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install Python package
+COPY python/pyproject.toml python/
+COPY python/geoag/ python/geoag/
+RUN pip install --no-cache-dir -e python/
+
+# Copy configs and data
+COPY configs/ configs/
+COPY data_samples/ data_samples/
+
+# Create data lake directory
+RUN mkdir -p data_lake
+
+ENV PYTHONPATH=/app/python
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8777
+
+CMD ["python", "-m", "geoag.api.server"]

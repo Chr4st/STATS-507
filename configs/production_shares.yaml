@@ -1,0 +1,20 @@
+# Global production shares by region (approximate, for weighting)
+# Values are fractions summing to ~1.0 per commodity
+
+corn:
+  US_CORN_BELT: 0.32
+  BRAZIL_SOY: 0.08       # Brazil also produces corn
+  EU_WHEAT_FRANCE: 0.05
+  INDIA_WHEAT_PUNJAB: 0.02
+  rest_of_world: 0.53
+
+wheat:
+  US_WHEAT_PLAINS: 0.07
+  EU_WHEAT_FRANCE: 0.12
+  INDIA_WHEAT_PUNJAB: 0.14
+  rest_of_world: 0.67
+
+soy:
+  BRAZIL_SOY: 0.34
+  US_CORN_BELT: 0.28     # US also major soy producer
+  rest_of_world: 0.38

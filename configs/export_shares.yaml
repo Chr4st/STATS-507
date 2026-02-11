@@ -1,0 +1,18 @@
+# Export shares by region (fraction of global exports)
+
+corn:
+  US_CORN_BELT: 0.26
+  BRAZIL_SOY: 0.06
+  EU_WHEAT_FRANCE: 0.03
+  rest_of_world: 0.65
+
+wheat:
+  US_WHEAT_PLAINS: 0.12
+  EU_WHEAT_FRANCE: 0.15
+  INDIA_WHEAT_PUNJAB: 0.02
+  rest_of_world: 0.71
+
+soy:
+  BRAZIL_SOY: 0.45
+  US_CORN_BELT: 0.30
+  rest_of_world: 0.25

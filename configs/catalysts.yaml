@@ -1,0 +1,38 @@
+# Volatility catalyst definitions
+# Used by signal engine to score upcoming catalysts
+
+weather_regime_catalysts:
+  - name: "El Nino onset"
+    probability_source: "placeholder"
+    impact_regions: ["BRAZIL_SOY", "INDIA_WHEAT_PUNJAB"]
+    impact_level: "high"
+
+  - name: "La Nina persistence"
+    probability_source: "placeholder"
+    impact_regions: ["US_CORN_BELT", "US_WHEAT_PLAINS"]
+    impact_level: "medium"
+
+  - name: "Indian monsoon anomaly"
+    probability_source: "placeholder"
+    impact_regions: ["INDIA_WHEAT_PUNJAB"]
+    impact_level: "high"
+
+  - name: "European heat dome"
+    probability_source: "placeholder"
+    impact_regions: ["EU_WHEAT_FRANCE"]
+    impact_level: "high"
+
+# Mock OI peaks for pin risk heuristic (demo data)
+oi_peaks:
+  ZC:
+    strikes: [420, 440, 460, 480, 500]
+    oi_weights: [0.15, 0.25, 0.30, 0.20, 0.10]
+    expiry: "2026-03-14"
+  ZW:
+    strikes: [550, 575, 600, 625, 650]
+    oi_weights: [0.10, 0.20, 0.35, 0.25, 0.10]
+    expiry: "2026-03-14"
+  ZS:
+    strikes: [1200, 1250, 1300, 1350, 1400]
+    oi_weights: [0.12, 0.22, 0.32, 0.22, 0.12]
+    expiry: "2026-03-14"
