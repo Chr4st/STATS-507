@@ -1,0 +1,27 @@
+# Commodity substitution map for cross-hedge logic
+# If stress is high in one commodity, these are potential substitutes/hedges
+
+substitutions:
+  corn:
+    - commodity: "wheat"
+      correlation: 0.65
+      note: "Feed wheat can substitute for feed corn"
+    - commodity: "soy"
+      correlation: 0.55
+      note: "Competing acreage; soy meal as feed alternative"
+
+  wheat:
+    - commodity: "corn"
+      correlation: 0.65
+      note: "Feed substitution; acreage competition in US"
+    - commodity: "soy"
+      correlation: 0.40
+      note: "Weak substitution; mainly acreage rotation"
+
+  soy:
+    - commodity: "corn"
+      correlation: 0.55
+      note: "Major acreage competitor in US and Brazil"
+    - commodity: "wheat"
+      correlation: 0.40
+      note: "Rotation crop; indirect link"

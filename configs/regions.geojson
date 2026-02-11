@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "US_CORN_BELT",
+        "name": "US Corn Belt",
+        "crop": "corn",
+        "country": "US",
+        "centroid_lat": 41.5,
+        "centroid_lon": -89.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-95.0, 37.0], [-82.0, 37.0], [-82.0, 46.0],
+          [-95.0, 46.0], [-95.0, 37.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "US_WHEAT_PLAINS",
+        "name": "US Wheat Plains",
+        "crop": "wheat",
+        "country": "US",
+        "centroid_lat": 38.5,
+        "centroid_lon": -99.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-104.0, 34.0], [-94.0, 34.0], [-94.0, 43.0],
+          [-104.0, 43.0], [-104.0, 34.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "BRAZIL_SOY",
+        "name": "Brazil Soy (Mato Grosso)",
+        "crop": "soy",
+        "country": "BR",
+        "centroid_lat": -12.5,
+        "centroid_lon": -55.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-60.0, -18.0], [-50.0, -18.0], [-50.0, -7.0],
+          [-60.0, -7.0], [-60.0, -18.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "EU_WHEAT_FRANCE",
+        "name": "France Wheat (Beauce)",
+        "crop": "wheat",
+        "country": "FR",
+        "centroid_lat": 48.1,
+        "centroid_lon": 1.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-1.0, 46.0], [4.0, 46.0], [4.0, 50.0],
+          [-1.0, 50.0], [-1.0, 46.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "INDIA_WHEAT_PUNJAB",
+        "name": "India Wheat (Punjab)",
+        "crop": "wheat",
+        "country": "IN",
+        "centroid_lat": 30.9,
+        "centroid_lon": 75.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [73.0, 29.0], [77.0, 29.0], [77.0, 33.0],
+          [73.0, 33.0], [73.0, 29.0]
+        ]]
+      }
+    }
+  ]
+}

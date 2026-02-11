@@ -1,0 +1,35 @@
+# GeoAg Arb Terminal — Docker Compose
+# ====================================
+# Optional deployment via Docker.
+# `make demo` works without Docker for local development.
+
+version: "3.9"
+
+services:
+  api-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    ports:
+      - "8777:8777"
+    volumes:
+      - ./configs:/app/configs:ro
+      - ./data_samples:/app/data_samples:ro
+      - data_lake:/app/data_lake
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python -m geoag.api.server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8777/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional Redis for pub/sub (not required for demo)
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+
+volumes:
+  data_lake:

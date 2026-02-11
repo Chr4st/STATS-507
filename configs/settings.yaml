@@ -1,0 +1,59 @@
+# GeoAg Arb Terminal - Global Settings
+# ============================================
+
+app:
+  name: "GeoAg Arb Terminal"
+  version: "0.1.0"
+  timezone: "America/Detroit"
+  seed: 42
+  demo_mode: true
+
+embedding:
+  backend: "stub"            # "stub" or "satclip"
+  dim: 512
+  tiles_per_region: 1
+  satclip_weights: "models/satclip-vit16-l10.ckpt"  # from HF microsoft/SatCLIP-ViT16-L10
+
+feature:
+  sequence_length: 14        # days of lookback (demo=14, prod=30)
+  seasonal_window: 30        # rolling baseline window
+  refresh_interval_s: 10     # seconds between recomputes in demo
+
+model:
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.15
+  mc_samples: 10             # MC dropout samples for uncertainty
+  confidence:
+    a: 3.0
+    b: 2.0
+    c: 1.5
+    d: 1.0
+
+signal:
+  ranking_weights:
+    shock_diff: 0.4
+    catalyst: 0.2
+    liquidity: 0.25
+    risk_penalty: 0.15
+  top_k_ideas: 10
+  pin_risk_threshold_pct: 1.5   # % of strike
+  pin_risk_dte_threshold: 5     # days to expiry
+
+server:
+  host: "0.0.0.0"
+  port: 8777
+  ws_path: "/ws"
+  heartbeat_interval_s: 5
+
+pubsub:
+  backend: "memory"          # "memory" or "redis"
+  redis_url: "redis://localhost:6379/0"
+
+data_lake:
+  root: "data_lake"
+  partitioning: "date"       # partition by date
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"

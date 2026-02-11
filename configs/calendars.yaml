@@ -1,0 +1,58 @@
+# Market holidays and report calendar for GeoAg Arb Terminal
+# Format: YYYY-MM-DD
+
+holidays:
+  CME:
+    - "2026-01-01"  # New Year's Day
+    - "2026-01-19"  # MLK Day
+    - "2026-02-16"  # Presidents Day
+    - "2026-04-03"  # Good Friday
+    - "2026-05-25"  # Memorial Day
+    - "2026-07-03"  # Independence Day (observed)
+    - "2026-09-07"  # Labor Day
+    - "2026-11-26"  # Thanksgiving
+    - "2026-12-25"  # Christmas
+
+  NYSE:
+    - "2026-01-01"
+    - "2026-01-19"
+    - "2026-02-16"
+    - "2026-04-03"
+    - "2026-05-25"
+    - "2026-07-03"
+    - "2026-09-07"
+    - "2026-11-26"
+    - "2026-12-25"
+
+# Catalysts: major USDA / WASDE / crop report dates (demo sample)
+report_calendar:
+  - date: "2026-02-10"
+    name: "WASDE Monthly"
+    agency: "USDA"
+    impact: "high"
+    commodities: ["corn", "wheat", "soy"]
+  - date: "2026-03-10"
+    name: "WASDE Monthly"
+    agency: "USDA"
+    impact: "high"
+    commodities: ["corn", "wheat", "soy"]
+  - date: "2026-03-31"
+    name: "Prospective Plantings"
+    agency: "USDA"
+    impact: "very_high"
+    commodities: ["corn", "wheat", "soy"]
+  - date: "2026-04-09"
+    name: "WASDE Monthly"
+    agency: "USDA"
+    impact: "high"
+    commodities: ["corn", "wheat", "soy"]
+  - date: "2026-06-30"
+    name: "Acreage Report"
+    agency: "USDA"
+    impact: "very_high"
+    commodities: ["corn", "wheat", "soy"]
+  - date: "2026-08-12"
+    name: "WASDE + Crop Production"
+    agency: "USDA"
+    impact: "very_high"
+    commodities: ["corn", "wheat", "soy"]

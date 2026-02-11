@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.so
+
+# Data lake (generated)
+data_lake/
+
+# Models (downloaded from HuggingFace)
+models/
+*.ckpt
+*.pth
+
+# Downloaded imagery (GreenHyperSpectra from HuggingFace)
+data_samples/imagery/greenhs/
+data_samples/imagery/greenhs_manifest.txt
+
+# C++ build
+cpp/build/
+
+# HuggingFace cache
+.cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.venv/
+venv/
+
+# Pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# ruff
+.ruff_cache/
